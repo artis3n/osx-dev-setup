@@ -28,7 +28,7 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
     state: link
     owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    group: "staff"
 
 - name: Terminal | Chroma - Get Latest Release
   community.general.github_release:
@@ -54,5 +54,5 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
     backup: true
     owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    group: "staff"
     mode: 0644

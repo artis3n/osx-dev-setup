@@ -21,7 +21,7 @@
     path: "{{ ansible_env.HOME }}/.ssh/config"
     state: touch
     owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    group: "staff"
     mode: 0600
 
 - name: SSH | Add key to GitHub
