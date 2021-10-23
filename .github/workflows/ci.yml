@@ -68,7 +68,7 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          sudo pip install -U setuptools wheel pipenv
+          pip3 install -U setuptools wheel pipenv
           pipenv install
 
       - name: Setup test environment
