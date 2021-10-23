@@ -30,8 +30,7 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          pip3 install -U setuptools wheel pipenv
+          pip install -U setuptools wheel pipenv
           pipenv install --dev
 
       - name: Lint code
@@ -69,8 +68,7 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          pip3 install -U setuptools wheel pipenv
+          pip install -U setuptools wheel pipenv
           pipenv install
 
       - name: Setup test environment
