@@ -52,9 +52,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Uninstall pre-packaged Homebrew
-        run: tests/uninstall-homebrew.sh
-
       - name: Uninstall pre-packaged browsers
         run: |
           sudo rm -rf /Applications/Firefox.app
@@ -68,8 +65,11 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          pip3 install -U setuptools wheel pipenv
+          pip install -U setuptools wheel pipenv
           pipenv install
+
+      - name: Uninstall pre-packaged Homebrew
+        run: tests/uninstall-homebrew.sh
 
       - name: Setup test environment
         run: |
