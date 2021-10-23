@@ -18,16 +18,23 @@ jobs:
 
       - name: Set up Python 3
         uses: actions/setup-python@v2
+        id: setup-python
         with:
-          python-version: '3.8'
+          python-version: '3.10'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
 
       - name: Install test dependencies
-        run: pip3 install yamllint ansible ansible-lint
+        run: pipenv install --dev
 
       - name: Lint code
         run: |
-          yamllint .
-          ansible-lint
+          pipenv run yamllint .
+          pipenv run ansible-lint
 
   integration:
     name: Integration
@@ -45,24 +52,31 @@ jobs:
           sudo rm -rf /Applications/Firefox.app
           sudo rm -rf /Applications/Google\ Chrome.app
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+
       - name: Install test dependencies
         run: |
           sudo python3 -m pip install --upgrade pip
-          sudo pip3 install setuptools wheel
-          sudo pip3 install ansible
+          sudo pip3 install -U setuptools wheel pipenv
+          pipenv install
 
       - name: Setup test environment
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
           cp tests/config.yml ./config.yml
-          ansible-galaxy install -r requirements.yml
+          pipenv run ansible-galaxy role install --roles-path requirements.yml
+          pipenv run ansible-galaxy collection install --collections-path requirements.yml
 
       - name: Test playbook syntax
-        run: ansible-playbook main.yml --syntax-check
+        run: pipenv run ansible-playbook main.yml --syntax-check
 
       - name: Test the playbook.
-        run: ansible-playbook main.yml
+        run: pipenv run ansible-playbook main.yml
         env:
           # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
           PY_COLORS: '1'
@@ -71,7 +85,7 @@ jobs:
       - name: Idempotence check.
         run: |
           idempotence=$(mktemp)
-          ansible-playbook main.yml | tee -a ${idempotence}
+          pipenv run ansible-playbook main.yml | tee -a ${idempotence}
           tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
