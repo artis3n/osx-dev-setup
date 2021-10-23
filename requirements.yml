@@ -1,6 +1,9 @@
 ---
 roles:
   - name: elliotweiser.osx-command-line-tools
+  - name: Comcast.sdkman
 
 collections:
+  - name: community.general
+  - name: community.crypto
   - name: geerlingguy.mac

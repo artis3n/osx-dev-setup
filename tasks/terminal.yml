@@ -1,0 +1,58 @@
+---
+- name: Terminal | Install Oh My ZSH
+  ansible.builtin.shell:
+    cmd: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    executable: /bin/bash
+    creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/oh-my-zsh.sh"
+
+- name: Terminal | ZSH Spaceship Theme
+  ansible.builtin.git:
+    repo: "https://github.com/spaceship-prompt/spaceship-prompt"
+    version: master
+    dest: "{{ lookup('env', 'HOME' }}/.oh-my-zsh/custom/themes/spaceship-prompt"
+    depth: 1
+  register: spaceship_repo
+
+- name: Terminal | Add Custom Plugins
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    version: "{{ item.version }}"
+    dest: "{{ lookup('env', 'HOME' }}/.oh-my-zsh/custom/themes/{{ item.dest }}"
+    depth: 1
+  loop: "{{ zsh_custom_plugins }}"
+
+- name: Terminal | ZSH Spaceship Symbolic Link
+  ansible.builtin.file:
+    src: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+    state: link
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+
+- name: Terminal | Chroma - Get Latest Release
+  community.general.github_release:
+    user: alecthomas
+    repo: chroma
+    action: latest_release
+  register: chroma_release
+
+- name: Terminal | Download Chroma Binary
+  ansible.builtin.unarchive:
+    src: "https://github.com/alecthomas/chroma/releases/download/{{ chroma_release.latest_release }}/chroma-{{ chroma_release.latest_release[1:] }}-darwin-{{ architecture }}.tar.gz"  # noqa line-length
+    dest: /tmp
+    remote_src: true
+
+- name: Terminal | Copy Chroma binary
+  ansible.builtin.command:
+    cmd: cp /tmp/chroma {{ lookup('env', 'GOPATH') }}/bin/chroma
+    creates: "{{ lookup('env', 'GOPATH') }}/bin/chroma"
+
+- name: Terminal | Update Shell Profile
+  ansible.builtin.template:
+    src: ../files/zshrc.j2
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+    backup: true
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+    mode: 0644
