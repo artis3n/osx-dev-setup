@@ -73,7 +73,7 @@ jobs:
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
           cp tests/config.yml ./config.yml
-          pipenv run ansible-galaxy role install --roles-path requirements.yml
+          pipenv run ansible-galaxy role install --role-file requirements.yml
           pipenv run ansible-galaxy collection install --requirements-file requirements.yml
 
       - name: Test playbook syntax
