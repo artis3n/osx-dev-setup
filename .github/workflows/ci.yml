@@ -29,7 +29,10 @@ jobs:
           key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
 
       - name: Install test dependencies
-        run: pipenv install --dev
+        run: |
+          sudo python3 -m pip install --upgrade pip
+          sudo pip3 install -U setuptools wheel pipenv
+          pipenv install --dev
 
       - name: Lint code
         run: |
@@ -43,6 +46,12 @@ jobs:
 
       - name: Checkout codebase
         uses: actions/checkout@v2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        id: setup-python
+        with:
+          python-version: '3.10'
 
       - name: Uninstall pre-packaged Homebrew
         run: tests/uninstall-homebrew.sh
