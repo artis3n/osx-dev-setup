@@ -54,6 +54,7 @@ jobs:
 
       - name: Uninstall pre-packaged browsers
         run: |
+          id
           sudo rm -rf /Applications/Firefox.app
           sudo rm -rf /Applications/Google\ Chrome.app
 
