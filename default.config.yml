@@ -50,9 +50,11 @@ mas_password: ""
 
 zsh_custom_plugins:
   - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: 'zsh-syntax-highlighting'
+    dest: zsh-syntax-highlighting
+    version: master
   - repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: 'zsh-autosuggestions'
+    dest: zsh-autosuggestions
+    version: master
 
 git_global_configs:
   - name: user.email
