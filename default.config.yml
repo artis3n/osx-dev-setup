@@ -12,14 +12,26 @@ configure_osx: true
 configure_dock: false
 
 homebrew_installed_packages:
+  - adr-tools
   - autoconf
   - bash-completion
+  - dive
+  - gcc
   - gettext
   - git
+  - git-lfs
   - github/gh/gh
+  - gnu-tar
+  - gnupg
   - go
+  - hadolint
+  - jq
+  - make
   - node
+  - plantuml
+  - pre-commit
   - readline
+  - tmux
   - wget
 
 homebrew_taps:
@@ -71,6 +83,3 @@ git_global_configs:
 npm_global_packages:
   - pnpm
   - yarn
-
-pip_packages:
-  - pre-commit

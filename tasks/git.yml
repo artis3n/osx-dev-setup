@@ -1,14 +1,4 @@
 ---
-- name: Git | Install Packages
-  community.general.homebrew:
-    name: '{{ git_brew_packages }}'
-    state: present
-
-- name: Git | Install LFS  # noqa command-instead-of-module
-  ansible.builtin.command:
-    cmd: git lfs install
-  changed_when: false
-
 - name: Git | Set Global Config
   community.general.git_config:
     name: "{{ item.name }}"
