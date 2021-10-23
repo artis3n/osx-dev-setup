@@ -19,5 +19,6 @@
 - name: SSH | Add key to GitHub
   community.general.github_key:
     name: "OSX Key"
-    token: "{{ github_token }}"
+    token: "{{ lookup('env', 'GITHUB_TOKEN') }}"
     pubkey: "{{ new_ssh_key.public_key | default(existing_ssh_key) }}"
+  tags: notest

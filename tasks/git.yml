@@ -18,7 +18,7 @@
 
 - name: Git | Configure SSH Key
   ansible.builtin.blockinfile:
-    path: "{{ lookup('env', 'HOME') }}/.ssh/config"
+    path: "{{ ansible_env.HOME }}/.ssh/config"
     block: |
       Host github
         HostName github.com

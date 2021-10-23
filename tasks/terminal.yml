@@ -4,13 +4,13 @@
     cmd: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   args:
     executable: /bin/bash
-    creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/oh-my-zsh.sh"
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh/oh-my-zsh.sh"
 
 - name: Terminal | ZSH Spaceship Theme
   ansible.builtin.git:
     repo: "https://github.com/spaceship-prompt/spaceship-prompt"
     version: master
-    dest: "{{ lookup('env', 'HOME' }}/.oh-my-zsh/custom/themes/spaceship-prompt"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship-prompt"
     depth: 1
   register: spaceship_repo
 
@@ -18,17 +18,17 @@
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     version: "{{ item.version }}"
-    dest: "{{ lookup('env', 'HOME' }}/.oh-my-zsh/custom/themes/{{ item.dest }}"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/{{ item.dest }}"
     depth: 1
   loop: "{{ zsh_custom_plugins }}"
 
 - name: Terminal | ZSH Spaceship Symbolic Link
   ansible.builtin.file:
-    src: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme"
-    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+    src: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
     state: link
-    owner: "{{ lookup('env', 'USER') }}"
-    group: "{{ lookup('env', 'USER') }}"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
 
 - name: Terminal | Chroma - Get Latest Release
   community.general.github_release:
@@ -45,14 +45,14 @@
 
 - name: Terminal | Copy Chroma binary
   ansible.builtin.command:
-    cmd: cp /tmp/chroma {{ lookup('env', 'GOPATH') }}/bin/chroma
-    creates: "{{ lookup('env', 'GOPATH') }}/bin/chroma"
+    cmd: cp /tmp/chroma {{ ansible_env.GOPATH }}/bin/chroma
+    creates: "{{ ansible_env.GOPATH }}/bin/chroma"
 
 - name: Terminal | Update Shell Profile
   ansible.builtin.template:
     src: ../files/zshrc.j2
-    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
     backup: true
-    owner: "{{ lookup('env', 'USER') }}"
-    group: "{{ lookup('env', 'USER') }}"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
     mode: 0644
