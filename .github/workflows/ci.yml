@@ -1,0 +1,97 @@
+---
+name: Ansible
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout codebase
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        id: setup-python
+        with:
+          python-version: '3.10'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+
+      - name: Install test dependencies
+        run: |
+          pip install -U setuptools wheel pipenv
+          pipenv install --dev
+
+      - name: Lint code
+        run: |
+          pipenv run yamllint .
+          pipenv run ansible-lint
+
+  integration:
+    name: Integration
+    runs-on: macos-11
+    steps:
+
+      - name: Checkout codebase
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        id: setup-python
+        with:
+          python-version: '3.10'
+
+      - name: Uninstall pre-packaged browsers
+        run: |
+          sudo rm -rf /Applications/Firefox.app
+          sudo rm -rf /Applications/Google\ Chrome.app
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+
+      - name: Install test dependencies
+        run: |
+          pip install -U setuptools wheel pipenv
+          pipenv install
+
+      - name: Setup test environment
+        run: |
+          cp tests/ansible.cfg ./ansible.cfg
+          cp tests/inventory ./inventory
+          cp tests/config.yml ./config.yml
+          pipenv run ansible-galaxy role install --role-file requirements.yml
+          pipenv run ansible-galaxy collection install --requirements-file requirements.yml
+
+      - name: Test playbook syntax
+        run: pipenv run ansible-playbook main.yml --syntax-check
+
+      - name: Test the playbook.
+        run: pipenv run ansible-playbook main.yml
+        env:
+          # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+
+      - name: Idempotence check.
+        run: |
+          idempotence=$(mktemp)
+          pipenv run ansible-playbook main.yml | tee -a ${idempotence}
+          tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+        env:
+          # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'

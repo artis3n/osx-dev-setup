@@ -1,0 +1,31 @@
+---
+default_language_version:
+  # force all unspecified python hooks to run python3
+  python: python3
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+      - id: sort-simple-yaml
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.3
+    hooks:
+      - id: yamllint
+
+  - repo: https://github.com/pre-commit/pre-commit
+    rev: v2.15.0
+    hooks:
+      - id: validate_manifest
+
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v5.2.1
+    hooks:
+      - id: ansible-lint

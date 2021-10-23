@@ -1,0 +1,7 @@
+---
+skip_list:
+  - experimental
+exclude_paths:
+  - .idea/
+  - .pre-commit-config.yaml
+  - .github/
