@@ -51,6 +51,7 @@ test -e "{{ lookup('env', 'HOME') }}/.iterm2_shell_integration.zsh" && source "{
 
 # Path exports
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$PATH:{{ lookup('env', 'HOME') }}/Documents/platform-tools"
 

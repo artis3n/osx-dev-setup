@@ -1,4 +1,14 @@
 ---
+- name: Get python
+  ansible.builtin.shell:
+    cmd: which python3; which python
+  changed_when: false
+  register: testing
+
+- name: Debug
+  ansible.builtin.debug:
+    var: testing
+
 - name: Dependencies | Install Global Pip Packages
   ansible.builtin.pip:
     name: "{{ pip_global_packages }}"
@@ -7,6 +17,7 @@
 
 - name: Dependencies | Install Global NPM Packages
   community.general.npm:
-    name: "{{ npm_global_packages }}"
+    name: "{{ item }}"
     state: present
     global: true
+  loop: "{{ npm_global_packages }}"
