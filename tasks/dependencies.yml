@@ -3,6 +3,7 @@
   ansible.builtin.pip:
     name: "{{ pip_global_packages }}"
     state: present
+    executable: "{{ pip3_path }}"
 
 - name: Dependencies | Install Global NPM Packages
   community.general.npm:
