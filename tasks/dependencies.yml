@@ -1,0 +1,11 @@
+---
+- name: Dependencies | Install Global Pip Packages
+  ansible.builtin.pip:
+    name: "{{ pip_global_packages }}"
+    state: present
+
+- name: Dependencies | Install Global NPM Packages
+  community.general.npm:
+    name: "{{ npm_global_packages }}"
+    state: present
+    global: true

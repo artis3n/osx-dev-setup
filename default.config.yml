@@ -14,7 +14,9 @@ configure_dock: false
 homebrew_installed_packages:
   - adr-tools
   - autoconf
+  - awscli
   - bash-completion
+  - conftest
   - dive
   - gcc
   - gettext
@@ -27,10 +29,13 @@ homebrew_installed_packages:
   - hadolint
   - jq
   - make
-  - node
+  - nodejs
+  - npm
+  - opa
   - plantuml
   - pre-commit
   - readline
+  - terraform
   - tmux
   - wget
 
@@ -42,6 +47,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - dropbox
   - firefox
+  - iterm2
   - slack
 
 mas_installed_apps: []
@@ -85,3 +91,7 @@ git_global_configs:
 npm_global_packages:
   - pnpm
   - yarn
+
+pip_global_packages:
+  - github3.py
+  - pipenv
