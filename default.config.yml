@@ -57,6 +57,7 @@ homebrew_taps:
   - adoptopenjdk/openjdk
   - github/gh
   - homebrew/cask
+  - homebrew/cask-fonts
   - homebrew/cask-versions
   - homebrew/core
   - homebrew/services
@@ -66,8 +67,11 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - adoptopenjdk
   - dropbox
+  - font-hack
+  - font-jetbrains-mono
   - firefox
   - iterm2
+  - jetbrains-toolbox
   - slack
   - snagit
   - visual-studio-code
