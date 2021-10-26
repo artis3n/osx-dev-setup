@@ -16,14 +16,6 @@
       ssh-add -K {{ ssh_key_path }}
   changed_when: false
 
-- name: SSH | Ensure SSH Config
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.ssh/config"
-    state: touch
-    owner: "{{ ansible_env.USER }}"
-    group: "staff"
-    mode: 0600
-
 - name: SSH | Add key to GitHub
   community.general.github_key:
     name: "OSX Key"

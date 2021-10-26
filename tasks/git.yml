@@ -9,6 +9,10 @@
 - name: Git | Configure SSH Key
   ansible.builtin.blockinfile:
     path: "{{ ansible_env.HOME }}/.ssh/config"
+    create: true
+    owner: "{{ ansible_env.USER }}"
+    group: "staff"
+    mode: 0600
     block: |
       Host github
         HostName github.com
