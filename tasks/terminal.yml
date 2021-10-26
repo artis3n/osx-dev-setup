@@ -31,12 +31,15 @@
     group: "staff"
 
 - name: Terminal | Chroma - Get Latest Release
-  ansible.builtin.set_fact:
-    chroma_release: "{{ lookup('artis3n.github.latest_release', 'alecthomas/chroma')[1:] }}"
+  community.general.github_release:
+    user: alecthomas
+    repo: chroma
+    action: latest_release
+  register: chroma_release
 
 - name: Terminal | Download Chroma Binary
   ansible.builtin.unarchive:
-    src: "https://github.com/alecthomas/chroma/releases/download/v{{ chroma_release }}/chroma-{{ chroma_release }}-darwin-{{ architecture }}.tar.gz"
+    src: "https://github.com/alecthomas/chroma/releases/download/{{ chroma_release.latest_release }}/chroma-{{ chroma_release.latest_release[1:] }}-darwin-{{ architecture }}.tar.gz"  # noqa line-length
     dest: /tmp
     remote_src: true
 
