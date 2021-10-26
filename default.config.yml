@@ -25,22 +25,25 @@ homebrew_installed_packages:
   - dive
   - gcc
   - gettext
+  - gh
   - git
   - git-lfs
-  - github/gh/gh
   - gnu-tar
   - gnupg
   - go
   - hadolint
   - helm
   - jq
-  - kubernetes-cli
-  - kubernetes-helm
+  - kubectl
+  - magic-wormhole
   - make
+  - minisign
+  - mkcert
   - nodejs
   - npm
   - opa
   - plantuml
+  - preflight
   - pre-commit
   - python
   - readline
@@ -51,11 +54,17 @@ homebrew_installed_packages:
   - wget
 
 homebrew_taps:
-  - homebrew/core
+  - adoptopenjdk/openjdk
+  - github/gh
   - homebrew/cask
+  - homebrew/cask-versions
+  - homebrew/core
+  - homebrew/services
+  - spectralops/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - adoptopenjdk
   - dropbox
   - firefox
   - iterm2
