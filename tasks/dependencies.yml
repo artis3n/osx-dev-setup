@@ -1,11 +1,5 @@
 ---
-- name: Dependencies | Install Global Pip 2 Packages
-  become: true
-  ansible.builtin.pip:
-    name: "{{ pip2_global_packages }}"
-    state: present
-
-- name: Dependencies | Install Global Pip 3 Packages
+- name: Dependencies | Install Global Pip Packages
   ansible.builtin.pip:
     name: "{{ pip_global_packages }}"
     state: present

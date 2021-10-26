@@ -94,8 +94,5 @@ npm_global_packages:
   - pnpm
   - yarn
 
-pip2_global_packages:
-  - github3.py
-
 pip_global_packages:
   - pipenv
