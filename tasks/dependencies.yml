@@ -3,6 +3,7 @@
   ansible.builtin.pip:
     name: "{{ pip2_global_packages }}"
     state: present
+    extra_args: --user
 
 - name: Dependencies | Install Global Pip 3 Packages
   ansible.builtin.pip:
