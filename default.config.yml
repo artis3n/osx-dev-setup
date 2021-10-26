@@ -1,9 +1,12 @@
 ---
-ssh_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 architecture: arm64
-pip3_path: /usr/local/opt/python/bin/pip3
-
 chroma_release: 0.9.4
+
+pip3_path: /usr/local/opt/python/bin/pip3
+default_home_dir: '/Users/{{ ansible_user }}'
+home_dir: "{{ lookup('env', 'ANSIBLE_HOME_DIR') | default(default_home_dir, true) }}"
+gopath: '{{ home_dir }}/go'
+ssh_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 
 email: dev@artis3nal.com
 handle: Artis3n

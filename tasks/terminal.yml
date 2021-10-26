@@ -47,8 +47,8 @@
 
 - name: Terminal | Copy Chroma binary
   ansible.builtin.command:
-    cmd: cp /tmp/chroma {{ ansible_env.GOPATH }}/bin/chroma
-    creates: "{{ ansible_env.GOPATH }}/bin/chroma"
+    cmd: cp /tmp/chroma {{ gopath }}/bin/chroma
+    creates: "{{ gopath }}/bin/chroma"
 
 - name: Terminal | Update Shell Profile
   ansible.builtin.template:
