@@ -30,16 +30,18 @@
     owner: "{{ ansible_env.USER }}"
     group: "staff"
 
-- name: Terminal | Chroma - Get Latest Release
-  community.general.github_release:
-    user: alecthomas
-    repo: chroma
-    action: latest_release
-  register: chroma_release
+# Doesn't work, installing github3.py breaks all over the place
+#
+# - name: Terminal | Chroma - Get Latest Release
+#  community.general.github_release:
+#    user: alecthomas
+#    repo: chroma
+#    action: latest_release
+#  register: chroma_release
 
 - name: Terminal | Download Chroma Binary
   ansible.builtin.unarchive:
-    src: "https://github.com/alecthomas/chroma/releases/download/{{ chroma_release.latest_release }}/chroma-{{ chroma_release.latest_release[1:] }}-darwin-{{ architecture }}.tar.gz"  # noqa line-length
+    src: "https://github.com/alecthomas/chroma/releases/download/v{{ chroma_release }}/chroma-{{ chroma_release }}-darwin-{{ architecture }}.tar.gz"
     dest: /tmp
     remote_src: true
 

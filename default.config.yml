@@ -3,6 +3,8 @@ ssh_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 architecture: arm64
 pip3_path: /usr/local/opt/python/bin/pip3
 
+chroma_release: 0.9.4
+
 email: dev@artis3nal.com
 handle: Artis3n
 
