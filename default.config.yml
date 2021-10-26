@@ -1,6 +1,7 @@
 ---
 ssh_key_path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 architecture: arm64
+pip3_path: /usr/local/opt/python/bin/pip3
 
 email: dev@artis3nal.com
 handle: Artis3n
@@ -10,8 +11,6 @@ configure_terminal: true
 configure_osx: true
 
 configure_dock: false
-
-pip3_path: /usr/local/bin/pip3
 
 homebrew_installed_packages:
   - adr-tools
@@ -95,6 +94,8 @@ npm_global_packages:
   - pnpm
   - yarn
 
-pip_global_packages:
+pip2_global_packages:
   - github3.py
+
+pip_global_packages:
   - pipenv
