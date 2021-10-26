@@ -52,7 +52,7 @@
 
 - name: Terminal | Update Shell Profile
   ansible.builtin.template:
-    src: ../files/zshrc.j2
+    src: ../files/.zshrc.j2
     dest: "{{ ansible_env.HOME }}/.zshrc"
     backup: true
     owner: "{{ ansible_env.USER }}"
