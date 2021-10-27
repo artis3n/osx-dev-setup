@@ -1,0 +1,24 @@
+---
+- name: SSH | Get Existing Key
+  set_fact:
+    existing_ssh_key: "{{ lookup('file', ssh_key_path + '.pub', errors='ignore') }}"
+
+- name: SSH | Generate SSH Keypair
+  community.crypto.openssh_keypair:
+    path: "{{ ssh_key_path }}"
+    type: ed25519
+  register: new_ssh_key
+
+- name: SSH | Add keypair
+  ansible.builtin.shell:
+    cmd: |
+      eval $(ssh-agent -s)
+      ssh-add -K {{ ssh_key_path }}
+  changed_when: false
+
+- name: SSH | Add key to GitHub
+  community.general.github_key:
+    name: "OSX Key"
+    token: "{{ lookup('env', 'GITHUB_TOKEN') }}"
+    pubkey: "{{ new_ssh_key.public_key | default(existing_ssh_key) }}"
+  tags: notest

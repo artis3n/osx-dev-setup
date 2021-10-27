@@ -25,3 +25,9 @@
       when: configure_dock
       tags:
         - dock
+
+  tasks:
+    - import_tasks: tasks/dependencies.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/terminal.yml

@@ -1,0 +1,26 @@
+---
+- name: Dependencies | Install Global Pip 3 Packages
+  ansible.builtin.pip:
+    name: "{{ pip_global_packages }}"
+    state: present
+    executable: "{{ pip3_path }}"
+
+- name: Dependencies | Install Global NPM Packages
+  community.general.npm:
+    name: "{{ item }}"
+    state: present
+    global: true
+  loop: "{{ npm_global_packages }}"
+
+- name: Dependencies | Ensure GOPATH
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ ansible_env.USER }}"
+    group: "staff"
+  loop:
+    - "{{ gopath }}"
+    - "{{ gopath }}/bin"
+    - "{{ gopath }}/pkg"
+    - "{{ gopath }}/src"

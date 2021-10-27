@@ -1,5 +1,13 @@
 ---
-downloads: ~/.ansible-downloads/
+architecture: arm64
+chroma_release: 0.9.4
+
+pip3_path: /usr/local/opt/python/bin/pip3
+gopath: "{{ ansible_env.HOME }}/go"
+ssh_key_path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+
+email: dev@artis3nal.com
+handle: Artis3n
 
 configure_dotfiles: true
 configure_terminal: true
@@ -8,22 +16,108 @@ configure_osx: true
 configure_dock: false
 
 homebrew_installed_packages:
+  - adr-tools
+  - autoconf
+  - awscli
+  - bash-completion
+  - bats-core
+  - conftest
+  - dive
+  - gcc
+  - gettext
+  - gh
   - git
-  - github/gh/gh
+  - git-lfs
+  - gnu-tar
+  - gnupg
   - go
-  - node
+  - hadolint
+  - helm
+  - jq
+  - kubectl
+  - magic-wormhole
+  - make
+  - minisign
+  - mkcert
+  - nodejs
+  - npm
+  - opa
+  - plantuml
+  - preflight
+  - pre-commit
+  - python
+  - readline
+  - terraform
+  - terraform-docs
+  - tmux
+  - vault
   - wget
 
 homebrew_taps:
-  - homebrew/core
+  - adoptopenjdk/openjdk
+  - github/gh
   - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/cask-versions
+  - homebrew/core
+  - homebrew/services
+  - spectralops/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - adoptopenjdk
   - dropbox
+  - font-hack
+  - font-jetbrains-mono
   - firefox
+  - iterm2
+  - jetbrains-toolbox
   - slack
+  - snagit
+  - visual-studio-code
+  - xmind-zen
 
 mas_installed_apps: []
 mas_email: ""
 mas_password: ""
+
+zsh_custom_plugins:
+  - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: zsh-syntax-highlighting
+    version: master
+  - repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: zsh-autosuggestions
+    version: master
+
+git_global_configs:
+  - name: user.email
+    value: '{{ email }}'
+  - name: user.name
+    value: '{{ handle }}'
+  - name: push.default
+    value: simple
+  - name: alias.ci
+    value: commit
+  - name: alias.s
+    value: status
+  - name: alias.br
+    value: branch
+  - name: alias.co
+    value: checkout
+  - name: alias.get
+    value: pull --prune
+  - name: alias.list
+    value: config --get-regexp alias
+  - name: alias.save
+    value: stash save
+  - name: init.defaultBranch
+    value: main
+  - name: pull.rebase
+    value: 'false'
+
+npm_global_packages:
+  - pnpm
+  - yarn
+
+pip_global_packages:
+  - pipenv

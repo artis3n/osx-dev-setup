@@ -6,11 +6,5 @@
 ## Usage
 
 ```bash
-make install
-make preprovision
-# Restart the computer
-export TAILSCALE_AUTH_KEY="..."
-make provision-oryx
-# or
-make provision-lemur
+# TBD
 ```
