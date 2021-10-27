@@ -1,0 +1,23 @@
+---
+- hosts: all
+
+  tasks:
+    - name: System | Check for Rosetta Install
+      ansible.builtin.command:
+        cmd: /usr/bin/pgrep oahd
+      register: rosetta_check
+      failed_when: rosetta_check.rc not in [0, 1]
+
+    - name: System | Install Rosetta 2
+      become: true
+      ansible.builtin.command:
+        cmd: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      when: rosetta_check.rc != 0
+      notify: Reboot Required
+
+  handlers:
+    - name: Reboot Required
+      become: true
+      ansible.builtin.reboot:
+      tags:
+        - notest
