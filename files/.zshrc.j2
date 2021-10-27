@@ -2,7 +2,7 @@ export GPG_TTY=$(tty)
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export ZSH="{{ lookup('env', 'HOME') }}/.oh-my-zsh
+export ZSH="{{ ansible_env.HOME }}/.oh-my-zsh
 ZSH_THEME="spaceship"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -46,14 +46,14 @@ source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval $(gh completion -s zsh)
 export PATH=$PATH:~/.npm-global/bin
 
-test -e "{{ lookup('env', 'HOME') }}/.iterm2_shell_integration.zsh" && source "{{ lookup('env', 'HOME') }}/.iterm2_shell_integration.zsh"
+test -e "{{ ansible_env.HOME }}/.iterm2_shell_integration.zsh" && source "{{ ansible_env.HOME }}/.iterm2_shell_integration.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Path exports
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="$PATH:{{ lookup('env', 'HOME') }}/Documents/platform-tools"
+export PATH="$PATH:{{ ansible_env.HOME }}/Documents/platform-tools"
 
 # General exports
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
@@ -62,6 +62,6 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 alias kali="docker exec -it kali"
 alias cat="ccat"
 
-export SDKMAN_DIR="{{ lookup('env', 'HOME') }}/.sdkman"
-[[ -s "{{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh" ]] && source "{{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="{{ ansible_env.HOME }}/.sdkman"
+[[ -s "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh" ]] && source "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"
 export SDKMAN_OFFLINE_MODE=false
