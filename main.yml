@@ -27,6 +27,8 @@
         - dock
 
   tasks:
+    - import_tasks: tasks/system.yml
+    - import_tasks: tasks/docker.yml
     - import_tasks: tasks/dependencies.yml
     - import_tasks: tasks/ssh.yml
     - import_tasks: tasks/git.yml

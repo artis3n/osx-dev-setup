@@ -50,6 +50,7 @@ test -e "{{ ansible_env.HOME }}/.iterm2_shell_integration.zsh" && source "{{ ans
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Path exports
+export PATH="$PATH:/opt/homebrew/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"

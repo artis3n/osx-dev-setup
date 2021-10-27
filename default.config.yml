@@ -121,3 +121,5 @@ npm_global_packages:
 
 pip_global_packages:
   - pipenv
+
+docker_apple_silicon: https://desktop.docker.com/mac/main/arm64/Docker.dmg

@@ -1,0 +1,17 @@
+---
+- name: System | Show Hidden Files
+  become: true
+  ansible.builtin.osx_defaults:
+    domain: com.apple.finder
+    key: AppleShowAllFiles
+    type: bool
+    value: true
+  notify: killall finder
+
+# - name: System | Show File Extensions
+#  ansible.builtin.osx_defaults:
+#    domain: NSGlobalDomain
+#    key: AppleShowAllExtensions
+#    type: bool
+#    value: true
+#  notify: killall finder
