@@ -32,16 +32,19 @@ homebrew_installed_packages:
   - gnupg
   - go
   - hadolint
+  - hashicorp/tap/boundary
   - helm
   - jq
   - kubectl
   - magic-wormhole
   - make
+  - mas
   - minisign
   - mkcert
   - nodejs
   - npm
   - opa
+  - packer
   - plantuml
   - preflight
   - pre-commit
@@ -51,10 +54,10 @@ homebrew_installed_packages:
   - terraform-docs
   - tmux
   - vault
+  - waypoint
   - wget
 
 homebrew_taps:
-  - adoptopenjdk/openjdk
   - github/gh
   - homebrew/cask
   - homebrew/cask-fonts
@@ -65,21 +68,22 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - adoptopenjdk
   - docker
   - dropbox
   - font-hack
   - font-jetbrains-mono
   - firefox
+  - hashicorp-boundary-desktop
   - iterm2
   - jetbrains-toolbox
-  - slack
-  - snagit
+  - temurin
   - visual-studio-code
-  - xmind-zen
 
-mas_installed_apps: []
-mas_email: ""
+mas_installed_apps:
+- 1327661892  # Xmind
+- 803453959  # Slack
+- 1531095431  # Snagit 2021
+mas_email: "{{ lookup('env', 'MAS_EMAIL') }}"
 mas_password: ""
 
 zsh_custom_plugins:
