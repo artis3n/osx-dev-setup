@@ -73,7 +73,7 @@ homebrew_cask_apps:
   - font-hack
   - font-jetbrains-mono
   - firefox
-  - hashicorp-boundary-desktop
+  - hashicorp/tap/hashicorp-boundary-desktop
   - iterm2
   - jetbrains-toolbox
   - temurin
