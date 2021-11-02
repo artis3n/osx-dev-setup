@@ -80,9 +80,9 @@ homebrew_cask_apps:
   - visual-studio-code
 
 mas_installed_apps:
-- 1327661892  # Xmind
-- 803453959  # Slack
-- 1531095431  # Snagit 2021
+  - 1327661892  # Xmind
+  - 803453959  # Slack
+  - 1531095431  # Snagit 2021
 mas_email: "{{ lookup('env', 'MAS_EMAIL') }}"
 mas_password: ""
 
