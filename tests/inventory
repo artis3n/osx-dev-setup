@@ -1,2 +1,2 @@
 [local]
-localhost ansible_connection=local ansible_user=runner ansible_python_interpreter=/usr/bin/python
+localhost ansible_connection=local ansible_user=runner ansible_python_interpreter=/usr/bin/python3

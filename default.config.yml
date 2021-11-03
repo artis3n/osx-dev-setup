@@ -68,6 +68,7 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - aws-vault
   - docker
   - dropbox
   - font-hack
@@ -79,6 +80,7 @@ homebrew_cask_apps:
   - rectangle
   - temurin
   - visual-studio-code
+  - zoom
 
 # mas is broken on OSX 12.x
 mas_installed_apps: []
