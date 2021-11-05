@@ -82,11 +82,11 @@ homebrew_cask_apps:
   - visual-studio-code
   - zoom
 
-# mas is broken on OSX 12.x
-mas_installed_apps: []
-#  - 1327661892  # Xmind
-#  - 803453959  # Slack
-#  - 1531095431  # Snagit 2021
+mas_installed_apps:
+  - 1327661892  # Xmind
+  - 803453959  # Slack
+  - 1531095431  # Snagit 2021
+  - 1475387142  # Tailscale
 mas_email: ""
 mas_password: ""
 
