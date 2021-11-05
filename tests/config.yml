@@ -1,3 +1,26 @@
 ---
 architecture: amd64
+
+homebrew_installed_packages:
+  - awscli
+  - gcc
+  - gh
+  - git
+  - git-lfs
+  - gnu-tar
+  - go
+  - jq
+  - make
+  - mas
+  - nodejs
+  - npm
+  - python
+
+homebrew_cask_apps:
+  - docker
+  - dropbox
+  - iterm2
+  - jetbrains-toolbox
+  - temurin
+
 mas_installed_apps: []
