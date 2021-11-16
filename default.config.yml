@@ -125,6 +125,8 @@ git_global_configs:
     value: main
   - name: pull.rebase
     value: 'false'
+  - name: alias.a
+    value: "add ."
 
 npm_global_packages:
   - pnpm
