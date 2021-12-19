@@ -21,11 +21,11 @@ repos:
       - id: yamllint
 
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.15.0
+    rev: v2.16.0
     hooks:
       - id: validate_manifest
 
   - repo: https://github.com/ansible/ansible-lint
-    rev: v5.2.1
+    rev: v5.3.1
     hooks:
       - id: ansible-lint
