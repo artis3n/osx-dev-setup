@@ -16,8 +16,9 @@ configure_osx: true
 configure_dock: false
 
 homebrew_installed_packages:
+  - act
   - adr-tools
-  - autoconf
+  - asciinema
   - awscli
   - bash-completion
   - bats-core
@@ -42,6 +43,7 @@ homebrew_installed_packages:
   - minisign
   - mkcert
   - nodejs
+  - nomad
   - npm
   - opa
   - packer
@@ -49,6 +51,8 @@ homebrew_installed_packages:
   - preflight
   - pre-commit
   - python
+  - p7zip
+  - superfly/tap/flyctl
   - readline
   - terraform
   - terraform-docs
@@ -77,8 +81,12 @@ homebrew_cask_apps:
   - hashicorp/tap/hashicorp-boundary-desktop
   - iterm2
   - jetbrains-toolbox
+  - parallels
+  - parallels-virtualization-sdk
   - rectangle
   - secretive
+  - session-manager-plugin
+  - snagit
   - temurin
   - visual-studio-code
   - zoom
@@ -86,7 +94,6 @@ homebrew_cask_apps:
 mas_installed_apps:
   - 1085114709  # Parallels Desktop
   - 803453959  # Slack
-  - 1531095431  # Snagit 2021
   - 1475387142  # Tailscale
   - 1327661892  # Xmind
 mas_email: ""
