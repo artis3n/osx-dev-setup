@@ -1,11 +1,14 @@
 #!/usr/bin/env make
 
+.PHONY: install
+	poetry install
+
 .PHONY: lint
 lint:
-	pipenv run yamllint .
-	pipenv run ansible-lint
+	poetry run yamllint .
+	poetry run ansible-lint
 
 .PHONY: update
 update:
-	pipenv update --dev
-	pipenv run pre-commit autoupdate
+	poetry update
+	poetry run pre-commit autoupdate

@@ -36,7 +36,6 @@ homebrew_installed_packages:
   - hashicorp/tap/boundary
   - helm
   - jq
-  - kubectl
   - magic-wormhole
   - make
   - mas
@@ -45,9 +44,11 @@ homebrew_installed_packages:
   - nodejs
   - nomad
   - npm
+  - nss
   - opa
   - packer
   - plantuml
+  - poetry
   - preflight
   - pre-commit
   - python
