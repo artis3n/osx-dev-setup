@@ -49,10 +49,10 @@ homebrew_installed_packages:
   - packer
   - plantuml
   - poetry
-  - preflight
   - pre-commit
   - python
   - p7zip
+  - spectralops/tap/preflight
   - superfly/tap/flyctl
   - readline
   - terraform
@@ -69,7 +69,6 @@ homebrew_taps:
   - homebrew/cask-versions
   - homebrew/core
   - homebrew/services
-  - spectralops/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -138,7 +137,6 @@ git_global_configs:
 
 npm_global_packages:
   - pnpm
-  - yarn
 
 pip_global_packages:
-  - pipenv
+  - poetry
