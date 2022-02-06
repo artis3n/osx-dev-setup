@@ -1,7 +1,12 @@
 #!/usr/bin/env make
 
 .PHONY: install
+install:
 	poetry install
+
+.PHONY: run
+run:
+	poetry run ansible-playbook -i inventory main.yml
 
 .PHONY: lint
 lint:

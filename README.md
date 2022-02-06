@@ -5,6 +5,15 @@
 
 ## Usage
 
+Install poetry, then install project dependencies.
+
 ```bash
-# TBD
+brew install python@3.10 poetry
+make install
+```
+
+Run the playbook against your local OSX machine:
+
+```bash
+make run
 ```
