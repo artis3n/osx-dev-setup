@@ -41,10 +41,10 @@ homebrew_installed_packages:
   - mas
   - minisign
   - mkcert
-  - nodejs
+  - node
+  - node@16
   - nomad
   - npm
-  - nss
   - opa
   - packer
   - plantuml
@@ -53,6 +53,7 @@ homebrew_installed_packages:
   - python
   - p7zip
   - spectralops/tap/preflight
+  - snyk/tap/snyk
   - superfly/tap/flyctl
   - readline
   - terraform
@@ -89,6 +90,7 @@ homebrew_cask_apps:
   - snagit
   - temurin
   - visual-studio-code
+  - xquartz
   - zoom
 
 mas_installed_apps:
