@@ -36,22 +36,24 @@ homebrew_installed_packages:
   - hashicorp/tap/boundary
   - helm
   - jq
-  - kubectl
   - magic-wormhole
   - make
   - mas
   - minisign
   - mkcert
-  - nodejs
+  - node
+  - node@16
   - nomad
   - npm
   - opa
   - packer
   - plantuml
-  - preflight
+  - poetry
   - pre-commit
   - python
   - p7zip
+  - spectralops/tap/preflight
+  - snyk/tap/snyk
   - superfly/tap/flyctl
   - readline
   - terraform
@@ -68,7 +70,6 @@ homebrew_taps:
   - homebrew/cask-versions
   - homebrew/core
   - homebrew/services
-  - spectralops/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -89,6 +90,7 @@ homebrew_cask_apps:
   - snagit
   - temurin
   - visual-studio-code
+  - xquartz
   - zoom
 
 mas_installed_apps:
@@ -137,7 +139,6 @@ git_global_configs:
 
 npm_global_packages:
   - pnpm
-  - yarn
 
 pip_global_packages:
-  - pipenv
+  - poetry

@@ -23,7 +23,6 @@ plugins=(
     git-extras
     golang
     iterm2
-    kubectl
     npm
     osx
     pip
@@ -61,7 +60,6 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # Aliases
 alias kali="docker exec -it kali"
-alias cat="ccat"
 
 export SDKMAN_DIR="{{ ansible_env.HOME }}/.sdkman"
 [[ -s "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh" ]] && source "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"

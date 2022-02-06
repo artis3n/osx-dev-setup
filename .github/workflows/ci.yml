@@ -22,21 +22,13 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-
       - name: Install test dependencies
         run: |
-          pip install -U setuptools wheel pipenv
-          pipenv install --dev
+          pip install poetry
+          poetry install
 
       - name: Lint code
-        run: |
-          pipenv run yamllint .
-          pipenv run ansible-lint
+        run: make lint
 
   integration:
     name: Integration
@@ -57,30 +49,23 @@ jobs:
           sudo rm -rf /Applications/Firefox.app
           sudo rm -rf /Applications/Google\ Chrome.app
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-
       - name: Install test dependencies
         run: |
-          pip install -U setuptools wheel pipenv
-          pipenv install
+          pip install poetry
+          poetry install --no-dev
 
       - name: Setup test environment
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
           cp tests/config.yml ./config.yml
-          pipenv run ansible-galaxy role install --role-file requirements.yml
-          pipenv run ansible-galaxy collection install --requirements-file requirements.yml
+          poetry run ansible-galaxy install -r requirements.yml
 
       - name: Test playbook syntax
-        run: pipenv run ansible-playbook main.yml --syntax-check
+        run: poetry run ansible-playbook main.yml --syntax-check
 
       - name: Test the playbook.
-        run: pipenv run ansible-playbook main.yml --skip-tags notest
+        run: poetry run ansible-playbook main.yml --skip-tags notest
         env:
           # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
           PY_COLORS: '1'
@@ -89,7 +74,7 @@ jobs:
       - name: Idempotence check.
         run: |
           idempotence=$(mktemp)
-          pipenv run ansible-playbook main.yml --skip-tags notest | tee -a ${idempotence}
+          poetry run ansible-playbook main.yml --skip-tags notest | tee -a ${idempotence}
           tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           # https://www.jeffgeerling.com/blog/2020/getting-colorized-output-molecule-and-ansible-on-github-actions-ci
