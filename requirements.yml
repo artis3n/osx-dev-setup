@@ -5,5 +5,4 @@ roles:
 
 collections:
   - name: community.general
-  - name: community.crypto
   - name: geerlingguy.mac

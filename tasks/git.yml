@@ -6,14 +6,9 @@
     scope: global
   loop: '{{ git_global_configs }}'
 
-- name: Git | Configure SSH Key
-  ansible.builtin.blockinfile:
-    path: "{{ ansible_env.HOME }}/.ssh/config"
-    create: true
-    owner: "{{ ansible_env.USER }}"
-    group: "staff"
-    mode: 0600
-    block: |
-      Host github
-        HostName github.com
-        IdentityFile {{ new_ssh_key.filename | default(ssh_key_path) }}
+- name: Git | Download Repositories
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.version }}"
+  loop: "{{ clone_git_repos }}"

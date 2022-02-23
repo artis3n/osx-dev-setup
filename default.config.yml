@@ -1,113 +1,18 @@
 ---
-architecture: arm64
-chroma_release: 0.9.4
-
-pip3_path: /usr/local/opt/python/bin/pip3
-gopath: "{{ ansible_env.HOME }}/go"
-ssh_key_path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
-
 email: dev@artis3nal.com
 handle: Artis3n
 
 configure_dotfiles: true
 configure_terminal: true
 configure_osx: true
-
 configure_dock: false
+# Whether to show dotfiles in Finder
+show_hidden_files: true
+# Whether to show file extensions in Finder
+show_file_extensions: false
 
-homebrew_installed_packages:
-  - act
-  - adr-tools
-  - asciinema
-  - awscli
-  - bash-completion
-  - bats-core
-  - conftest
-  - dive
-  - gcc
-  - gettext
-  - gh
-  - git
-  - git-lfs
-  - gnu-tar
-  - gnupg
-  - go
-  - hadolint
-  - hashicorp/tap/boundary
-  - helm
-  - jq
-  - magic-wormhole
-  - make
-  - mas
-  - minisign
-  - mkcert
-  - node
-  - node@16
-  - nomad
-  - npm
-  - opa
-  - packer
-  - plantuml
-  - poetry
-  - pre-commit
-  - python
-  - p7zip
-  - spectralops/tap/preflight
-  - snyk/tap/snyk
-  - superfly/tap/flyctl
-  - readline
-  - terraform
-  - terraform-docs
-  - tmux
-  - vault
-  - waypoint
-  - wget
-
-homebrew_taps:
-  - github/gh
-  - homebrew/cask
-  - homebrew/cask-fonts
-  - homebrew/cask-versions
-  - homebrew/core
-  - homebrew/services
-
-homebrew_cask_appdir: /Applications
-homebrew_cask_apps:
-  - aws-vault
-  - docker
-  - dropbox
-  - font-hack
-  - font-jetbrains-mono
-  - firefox
-  - hashicorp/tap/hashicorp-boundary-desktop
-  - iterm2
-  - jetbrains-toolbox
-  - parallels
-  - parallels-virtualization-sdk
-  - rectangle
-  - secretive
-  - session-manager-plugin
-  - snagit
-  - temurin
-  - visual-studio-code
-  - xquartz
-  - zoom
-
-mas_installed_apps:
-  - 1085114709  # Parallels Desktop
-  - 803453959  # Slack
-  - 1475387142  # Tailscale
-  - 1327661892  # Xmind
-mas_email: ""
-mas_password: ""
-
-zsh_custom_plugins:
-  - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: zsh-syntax-highlighting
-    version: master
-  - repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: zsh-autosuggestions
-    version: master
+pip3_path: /opt/homebrew/bin/pip3
+gopath: "{{ ansible_env.HOME }}/go"
 
 git_global_configs:
   - name: user.email
@@ -136,6 +41,154 @@ git_global_configs:
     value: 'false'
   - name: alias.a
     value: "add ."
+  # Git Delta section
+  - name: core.pager
+    value: delta
+  - name: interactive.diffFilter
+    value: "delta --color-only --features=interactive"
+  - name: delta.features
+    value: decorations
+  - name: delta.line-numbers
+    value: true
+  - name: delta.side-by-side
+    value: true
+  - name: delta.navigate
+    value: true
+  - name: delta.colorMoved
+    value: default
+  - name: merge.conflictstyle
+    value: zdiff3
+  # End Git Delta section  # noqa comments-indentation
+
+clone_git_repos: []
+
+homebrew_installed_packages:
+  - act
+  - adr-tools
+  - asciinema
+  - awscli
+  - bash-completion
+  - bat
+  - bats-core
+  - certbot
+  - conftest
+  - dive
+  - dog
+  - duf
+  - dust
+  - exa
+  - gcc
+  - gettext
+  - gh
+  - git
+  - git-delta
+  - git-lfs
+  - gnu-tar
+  - gnupg
+  - go
+  - hadolint
+  - hashicorp/tap/boundary
+  - helm
+  - httpie
+  - jq
+  - magic-wormhole
+  - make
+  - mas
+  - minisign
+  - mkcert
+  - node
+  - node@16
+  - nomad
+  - npm
+  - opa
+  - packer
+  - plantuml
+  - poetry
+  - pre-commit
+  - python
+  - p7zip
+  - rs/tap/curlie
+  - snyk/tap/snyk
+  - spectralops/tap/preflight
+  - superfly/tap/flyctl
+  - terraform
+  - terraform-docs
+  - tldr
+  - tmux
+  - vault
+  - waypoint
+  - wget
+
+homebrew_taps:
+  - github/gh
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/cask-versions
+  - homebrew/core
+  - homebrew/services
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - aws-vault
+  - burp-suite-professional
+  - docker
+  - dropbox
+  - font-hack
+  - font-jetbrains-mono
+  - firefox
+  - hashicorp/tap/hashicorp-boundary-desktop
+  - iterm2
+  - jetbrains-toolbox
+  - parallels
+  - parallels-virtualization-sdk
+  - rectangle
+  - secretive
+  - session-manager-plugin
+  - snagit
+  - temurin
+  - visual-studio-code
+  - xquartz
+  - zoom
+
+mas_installed_apps:
+  - 803453959  # Slack
+  - 1475387142  # Tailscale
+  - 1327661892  # Xmind
+mas_email: ""
+mas_password: ""
+
+zsh_plugins:
+  - aws
+  - docker
+  - golang
+  - history
+  - iterm2
+  - macos
+  - npm
+  - pip
+  - poetry
+  - python
+  - sudo
+  - terraform
+  - tmux
+  - vscode
+  - web-search
+  - wd
+  - zsh-autosuggestions
+  - zsh-completions
+  - zsh-syntax-highlighting
+
+zsh_custom_plugins:
+  - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: zsh-syntax-highlighting
+    version: master
+  - repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: zsh-autosuggestions
+    version: master
+
+ssh_keys:
+  - GitHub
+  - JumpCloud
 
 npm_global_packages:
   - pnpm

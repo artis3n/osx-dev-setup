@@ -1,24 +1,42 @@
 ---
-- name: SSH | Get Existing Key
-  set_fact:
-    existing_ssh_key: "{{ lookup('file', ssh_key_path + '.pub', errors='ignore') }}"
+- name: SSH | Check For Completion
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.ansible_ssh"
+  register: ssh_completed_check
 
-- name: SSH | Generate SSH Keypair
-  community.crypto.openssh_keypair:
-    path: "{{ ssh_key_path }}"
-    type: ed25519
-  register: new_ssh_key
+- name: SSH | Setup SSH Keys
+  when: not ssh_completed_check.stat.exists
+  block:
+    - name: SSH | Setup Secretive
+      ansible.builtin.pause:
+        prompt: |
+          Open the Secretive App and follow its instructions.
 
-- name: SSH | Add keypair
-  ansible.builtin.shell:
-    cmd: |
-      eval $(ssh-agent -s)
-      ssh-add -K {{ ssh_key_path }}
-  changed_when: false
+          Then press enter to continue.
 
-- name: SSH | Add key to GitHub
-  community.general.github_key:
-    name: "OSX Key"
-    token: "{{ lookup('env', 'GITHUB_TOKEN') }}"
-    pubkey: "{{ new_ssh_key.public_key | default(existing_ssh_key) }}"
-  tags: notest
+    - name: SSH | Create SSH Keys - {{ item }}
+      ansible.builtin.pause:
+        prompt: |
+          Create a Secretive SSH key and enter the Public Key Path for the key - "{{ item }}"
+      loop: "{{ ssh_keys }}"
+      register: pubkeys
+
+    - name: SSH | Validate Public Key Inputs  # noqa empty-string-compare
+      ansible.builtin.fail:
+        msg: "{{ item.item }} SSH key was empty!"
+      when: item.user_input == ""
+      loop: "{{ pubkeys.results | from_yaml | list }}"
+
+    - name: SSH | SSH Config
+      ansible.builtin.template:
+        src: ../files/sshconfig.j2
+        dest: "{{ ansible_env.HOME }}/.ssh/config"
+        owner: "{{ ansible_env.USER }}"
+        group: "staff"
+        mode: '0644'
+        backup: true
+
+    - name: SSH | Register Idempotency
+      ansible.builtin.command:
+        cmd: touch {{ ansible_env.HOME }}/.ansible_ssh
+      changed_when: false

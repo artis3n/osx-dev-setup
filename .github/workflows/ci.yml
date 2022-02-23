@@ -16,16 +16,17 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v2
 
+      - name: Install dependency manager
+        run: pipx install poetry
+
       - name: Set up Python 3
         uses: actions/setup-python@v2
         id: setup-python
         with:
           python-version: '3.10'
 
-      - name: Install test dependencies
-        run: |
-          pip install poetry
-          poetry install
+      - name: Install dependencies
+        run: poetry install
 
       - name: Lint code
         run: make lint
@@ -37,6 +38,9 @@ jobs:
 
       - name: Checkout codebase
         uses: actions/checkout@v2
+
+      - name: Install dependency manager
+        run: pipx install poetry
 
       - name: Set up Python 3
         uses: actions/setup-python@v2
@@ -50,9 +54,7 @@ jobs:
           sudo rm -rf /Applications/Google\ Chrome.app
 
       - name: Install test dependencies
-        run: |
-          pip install poetry
-          poetry install --no-dev
+        run: poetry install --no-dev
 
       - name: Setup test environment
         run: |
