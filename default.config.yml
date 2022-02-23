@@ -11,7 +11,6 @@ show_hidden_files: true
 # Whether to show file extensions in Finder
 show_file_extensions: false
 
-pip3_path: /opt/homebrew/bin/pip3
 gopath: "{{ ansible_env.HOME }}/go"
 
 git_global_configs:
@@ -192,6 +191,3 @@ ssh_keys:
 
 npm_global_packages:
   - pnpm
-
-pip_global_packages:
-  - poetry
