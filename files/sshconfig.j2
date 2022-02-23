@@ -1,0 +1,6 @@
+Host *
+	IdentityAgent /Users/artis3n/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
+Host github.com
+	HostName github.com
+	IdentityFile {{ (pubkeys.results | from_yaml | list)[0].user_input }}

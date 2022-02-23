@@ -3,14 +3,14 @@
 .PHONY: install
 install:
 	poetry install
+	poetry run pre-commit install --install-hooks
 
 .PHONY: run
 run:
-	poetry run ansible-playbook -i inventory main.yml
+	poetry run ansible-playbook --ask-become-pass -i inventory main.yml
 
 .PHONY: lint
 lint:
-	poetry run yamllint .
 	poetry run ansible-lint
 
 .PHONY: update

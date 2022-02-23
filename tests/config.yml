@@ -1,6 +1,4 @@
 ---
-architecture: amd64
-
 homebrew_installed_packages:
   - awscli
   - gcc

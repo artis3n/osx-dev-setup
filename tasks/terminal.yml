@@ -11,7 +11,6 @@
     repo: "https://github.com/spaceship-prompt/spaceship-prompt"
     version: master
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship-prompt"
-    depth: 1
   register: spaceship_repo
 
 - name: Terminal | Add Custom Plugins
@@ -19,7 +18,6 @@
     repo: "{{ item.repo }}"
     version: "{{ item.version }}"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/{{ item.dest }}"
-    depth: 1
   loop: "{{ zsh_custom_plugins }}"
 
 - name: Terminal | ZSH Spaceship Symbolic Link
@@ -30,31 +28,17 @@
     owner: "{{ ansible_env.USER }}"
     group: "staff"
 
-# Doesn't work, installing github3.py breaks all over the place
-#
-# - name: Terminal | Chroma - Get Latest Release
-#  community.general.github_release:
-#    user: alecthomas
-#    repo: chroma
-#    action: latest_release
-#  register: chroma_release
-
-- name: Terminal | Download Chroma Binary
-  ansible.builtin.unarchive:
-    src: "https://github.com/alecthomas/chroma/releases/download/v{{ chroma_release }}/chroma-{{ chroma_release }}-darwin-{{ architecture }}.tar.gz"
-    dest: /tmp
-    remote_src: true
-
-- name: Terminal | Copy Chroma binary
-  ansible.builtin.command:
-    cmd: cp /tmp/chroma {{ gopath }}/bin/chroma
-    creates: "{{ gopath }}/bin/chroma"
-
 - name: Terminal | Update Shell Profile
   ansible.builtin.template:
     src: ../files/.zshrc.j2
     dest: "{{ ansible_env.HOME }}/.zshrc"
-    backup: true
     owner: "{{ ansible_env.USER }}"
     group: "staff"
     mode: 0644
+    backup: true
+
+- name: Terminal | Install Platform Tools
+  ansible.builtin.unarchive:
+    src: https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
+    dest: "{{ ansible_env.HOME }}/Documents/"
+    remote_src: true
