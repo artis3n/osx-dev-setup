@@ -6,6 +6,7 @@
 
 - name: SSH | Setup SSH Keys
   when: not ssh_completed_check.stat.exists
+  tags: notest
   block:
     - name: SSH | Setup Secretive
       ansible.builtin.pause:
