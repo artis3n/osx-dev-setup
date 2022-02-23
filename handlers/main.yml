@@ -4,3 +4,11 @@
   ansible.builtin.command:
     cmd: killall Finder
   changed_when: false
+
+- name: SSH Idempotency
+  ansible.builtin.copy:
+    content: "Done"
+    dest: "{{ ansible_env.HOME }}/.ansible_ssh"
+    owner: "{{ ansible_env.USER }}"
+    group: staff
+    mode: '0644'

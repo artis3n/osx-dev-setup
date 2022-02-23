@@ -36,8 +36,4 @@
         group: "staff"
         mode: '0644'
         backup: true
-
-    - name: SSH | Register Idempotency
-      ansible.builtin.command:
-        cmd: touch {{ ansible_env.HOME }}/.ansible_ssh
-      changed_when: false
+      notify: SSH Idempotency
