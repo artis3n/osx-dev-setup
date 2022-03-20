@@ -27,11 +27,11 @@
         - dock
 
   tasks:
-    - import_tasks: tasks/system.yml
-    - import_tasks: tasks/dependencies.yml
-    - import_tasks: tasks/ssh.yml
-    - import_tasks: tasks/git.yml
-    - import_tasks: tasks/terminal.yml
+    - ansible.builtin.import_tasks: tasks/system.yml
+    - ansible.builtin.import_tasks: tasks/dependencies.yml
+    - ansible.builtin.import_tasks: tasks/ssh.yml
+    - ansible.builtin.import_tasks: tasks/git.yml
+    - ansible.builtin.import_tasks: tasks/terminal.yml
 
   handlers:
-    - import_tasks: handlers/main.yml
+    - ansible.builtin.import_tasks: handlers/main.yml
