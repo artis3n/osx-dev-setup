@@ -128,6 +128,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - aws-vault
   - burp-suite-professional
+  - cron
   - docker
   - dropbox
   - font-hack
@@ -136,6 +137,7 @@ homebrew_cask_apps:
   - hashicorp/tap/hashicorp-boundary-desktop
   - iterm2
   - jetbrains-toolbox
+  - linear-linear
   - parallels
   - parallels-virtualization-sdk
   - rectangle
@@ -144,7 +146,6 @@ homebrew_cask_apps:
   - snagit
   - temurin
   - visual-studio-code
-  - xquartz
   - zoom
 
 mas_installed_apps:
