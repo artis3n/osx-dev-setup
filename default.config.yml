@@ -57,13 +57,12 @@ git_global_configs:
     value: default
   - name: merge.conflictstyle
     value: zdiff3
-  # End Git Delta section  # noqa comments-indentation
+  # End Git Delta section  # noqa yaml
 
 clone_git_repos: []
 
 homebrew_installed_packages:
   - act
-  - adr-tools
   - asciinema
   - awscli
   - bash-completion
@@ -86,7 +85,6 @@ homebrew_installed_packages:
   - gnupg
   - go
   - hadolint
-  - hashicorp/tap/boundary
   - helm
   - httpie
   - jq
@@ -96,7 +94,6 @@ homebrew_installed_packages:
   - minisign
   - mkcert
   - node@16
-  - nomad
   - npm
   - opa
   - packer
@@ -114,7 +111,6 @@ homebrew_installed_packages:
   - tldr
   - tmux
   - vault
-  - waypoint
   - wget
 
 homebrew_taps:
@@ -136,7 +132,6 @@ homebrew_cask_apps:
   - font-hack
   - font-jetbrains-mono
   - firefox
-  - hashicorp/tap/hashicorp-boundary-desktop
   - iterm2
   - jetbrains-toolbox
   - linear-linear
@@ -157,7 +152,6 @@ mas_installed_apps:
   - 1475387142  # Termius
   - 497799835  # Xcode
   - 1477110326  # Capital One Shopping
-  - 1352778147  # Bitwarden
   - 1569813296  # 1Password For Safari
 mas_email: ""
 mas_password: ""

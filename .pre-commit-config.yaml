@@ -5,7 +5,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.2.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -21,11 +21,11 @@ repos:
       - id: yamllint
 
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.17.0
+    rev: v2.19.0
     hooks:
       - id: validate_manifest
 
   - repo: https://github.com/ansible/ansible-lint
-    rev: v6.0.2
+    rev: v6.2.0
     hooks:
       - id: ansible-lint
