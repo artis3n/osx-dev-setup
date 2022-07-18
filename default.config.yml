@@ -57,7 +57,7 @@ git_global_configs:
     value: default
   - name: merge.conflictstyle
     value: zdiff3
-  # End Git Delta section  # noqa comments-indentation
+  # End Git Delta section  # noqa yaml[comments-indentation]
 
 clone_git_repos: []
 
