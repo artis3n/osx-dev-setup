@@ -514,7 +514,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5d024a4d07029621c12eaf05c42458319abc4f0301d64ce9b0d2a6fc4e62deb4"
+content-hash = "11f8fd85696a5dbe80447c01091d6f09f2c0b9159b99afef3a824ed8f1cff68a"
 
 [metadata.files]
 ansible = []
