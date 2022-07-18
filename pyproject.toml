@@ -6,12 +6,12 @@ authors = ["Artis3n <dev@artis3nal.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-ansible = "^5.7.1"
+python = "^3.10"
+ansible = "^6.1.0"
 
 [tool.poetry.dev-dependencies]
 ansible-lint = "^6.0.2"
-pre-commit = "^2.19.0"
+pre-commit = "^2.20.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
