@@ -11,7 +11,7 @@ ansible = "^7.1.0"
 
 [tool.poetry.dev-dependencies]
 ansible-lint = "^6.3.0"
-pre-commit = "^2.21.0"
+pre-commit = "^3.0.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
