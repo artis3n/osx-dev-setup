@@ -33,7 +33,7 @@ jobs:
 
   integration:
     name: Integration
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
 
       - name: Checkout codebase
