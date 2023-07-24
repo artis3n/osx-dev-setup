@@ -2,17 +2,17 @@
 
 [[package]]
 name = "ansible"
-version = "7.6.0"
+version = "8.2.0"
 description = "Radically simple IT automation"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ansible-7.6.0-py3-none-any.whl", hash = "sha256:e7b1ea64ac2af00f18df3f20d69651f119b1bc3c68d57f8f8a16b045b430dc56"},
-    {file = "ansible-7.6.0.tar.gz", hash = "sha256:4159a266f2caf91adf16daca6a23d132b987ce3acde9c0f2f3089e80d8048f2e"},
+    {file = "ansible-8.2.0-py3-none-any.whl", hash = "sha256:4b0b4f301c9d42d39597d45fdd5c6844f4ae5beeb5c003659b9fc464246a14f5"},
+    {file = "ansible-8.2.0.tar.gz", hash = "sha256:935a6921ffb034aa18e6507b49e401676cd15243d6faa5e05e221008bf725c97"},
 ]
 
 [package.dependencies]
-ansible-core = ">=2.14.6,<2.15.0"
+ansible-core = ">=2.15.2,<2.16.0"
 
 [[package]]
 name = "ansible-compat"
@@ -36,13 +36,13 @@ test = ["coverage", "flaky", "pip-tools", "pytest", "pytest-markdown", "pytest-m
 
 [[package]]
 name = "ansible-core"
-version = "2.14.6"
+version = "2.15.2"
 description = "Radically simple IT automation"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ansible-core-2.14.6.tar.gz", hash = "sha256:0cddb0df454561981f1c541db7ac5398d5e9de452ea1f01847acbd031fd7d2b2"},
-    {file = "ansible_core-2.14.6-py3-none-any.whl", hash = "sha256:08963309f44cd98862aba8d887ac5c2b4159cd1c2e31ac9cf47d661e985e6bb9"},
+    {file = "ansible-core-2.15.2.tar.gz", hash = "sha256:84251b001f2f9c0914beedffcf19529e745a13108159d1fe27de9e3a6a63ac5a"},
+    {file = "ansible_core-2.15.2-py3-none-any.whl", hash = "sha256:07a8f0476904876aaaf51401c617519cdd9cfb6e1e3ac46597c35699b0b83d52"},
 ]
 
 [package.dependencies]
@@ -50,7 +50,7 @@ cryptography = "*"
 jinja2 = ">=3.0.0"
 packaging = "*"
 PyYAML = ">=5.1"
-resolvelib = ">=0.5.3,<0.9.0"
+resolvelib = ">=0.5.3,<1.1.0"
 
 [[package]]
 name = "ansible-lint"
@@ -862,4 +862,4 @@ setuptools = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "f4e0dc31256740f69668f3dc4058ccca717c3599351b3b70fa934e14608e1171"
+content-hash = "105874f4ae0abd0708926c7d19ec8abfc67b72f11861a4e4c3ff5bd94bebac44"
